@@ -12,5 +12,22 @@
             Mana = mana;
             Gold = gold;
         }
+
+        public void Heal()
+        {
+            if (Mana >= 10)
+            {
+                int healAmount = 20;
+                HP += healAmount;
+                Mana -= 10;
+                Console.WriteLine($"{Name} heals for {healAmount} HP! Mana left: {Mana}");
+            }
+            else
+            {
+                Console.WriteLine("Not enough Mana to heal!");
+            }
+
+
+        }
     }
 }

@@ -4,7 +4,7 @@
     {
         //Properties
         public string Name { get; private set; }
-        public int HP { get; private set; }
+        public int HP { get; set; }
         public int Damage { get; private set; }
 
         //Constructor
@@ -15,7 +15,13 @@
             Damage = damage;
         }
 
-        public abstract void Attack();
+        public abstract void Attack(EntityProperties damage);
+
+        public void TakeDamage(int damage)
+        {
+            HP -= damage;
+            if (HP < 0) HP = 0;
+        }
 
 
 

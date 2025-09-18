@@ -4,9 +4,10 @@
     {
         public Goblin() : base("Goblin", 100, 5, 1) { }
 
-        public override void Attack()
+        public override void Attack(EntityProperties target)
         {
-            Console.WriteLine("Goblin attacks with knife!");
+            Console.WriteLine($"{Name} attacks {target.Name} for {Damage}!");
+            target.TakeDamage(Damage);
         }
     }
 }

@@ -33,6 +33,8 @@ namespace cs_MiniAdventure
             }
 
             Console.WriteLine($"Welcome {playerName}, the {Player.GetType().Name}");
+
+            LevelHelper.StartHelper(1, Player);
         }
     }
 }

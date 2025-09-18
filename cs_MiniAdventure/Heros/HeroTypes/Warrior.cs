@@ -4,9 +4,10 @@
     {
         public Warrior(string name) : base("Warrior", 100, 15, 50, 0) { }
 
-        public override void Attack()
+        public override void Attack(EntityProperties target)
         {
-            Console.WriteLine($"{Name} Swings a sword!");
+            Console.WriteLine($"{Name} attacks {target.Name} for {Damage} Damage!");
+            target.TakeDamage(Damage);
         }
     }
 }
