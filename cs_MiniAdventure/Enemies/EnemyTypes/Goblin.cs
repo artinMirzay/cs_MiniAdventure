@@ -2,7 +2,7 @@
 {
     public class Goblin : Enemy
     {
-        public Goblin() : base("Goblin", 100, 20, 1) { }
+        public Goblin() : base("Goblin", 100, 5, 1) { }
 
         public override void Attack()
         {
