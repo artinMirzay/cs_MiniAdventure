@@ -12,7 +12,10 @@ namespace cs_MiniAdventure
 
             Enemy enemy = level switch
             {
-                1 => new Goblin()
+                1 => new Goblin(),
+                2 => new Wolf(),
+                3 => new Golem(),
+                _ => new Goblin()
             };
 
             Console.WriteLine($"A Wild {enemy.Name} appears!");

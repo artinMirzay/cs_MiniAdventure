@@ -29,12 +29,24 @@ namespace cs_MiniAdventure
                 case 3:
                     break;
                 default:
+                    Console.WriteLine("Invalid choice");
                     break;
             }
 
             Console.WriteLine($"Welcome {playerName}, the {Player.GetType().Name}");
 
-            LevelHelper.StartHelper(1, Player);
+            for (int level = 0; level <= 3; level++)
+            {
+                LevelHelper.StartHelper(level, Player);
+
+                if (Player.HP <= level)
+                {
+                    Console.WriteLine("Game Over!");
+                    break;
+                }
+            }
+
+            Console.WriteLine($"Final Gold: {Player.Gold}");
         }
     }
 }
