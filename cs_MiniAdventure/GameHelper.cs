@@ -9,13 +9,16 @@ namespace cs_MiniAdventure
 
         public static void StartGame()
         {
-            Console.Write("Enter Your player name:");
+            Console.Clear();
+            Console.Write("Enter Your player name: ");
             string playerName = Console.ReadLine();
+            Console.Clear();
 
             Console.WriteLine("Choose your starting class: ");
             Console.WriteLine("[1] Warrior");
             Console.WriteLine("[2] Mage");
             Console.WriteLine("[3] Rogue");
+            Console.Write("Choice: ");
 
             int choice = int.Parse(Console.ReadLine());
 
@@ -25,15 +28,22 @@ namespace cs_MiniAdventure
                     Player = new Warrior(playerName);
                     break;
                 case 2:
+                    Player = new Mage(playerName);
                     break;
                 case 3:
+                    Player = new Rogue(playerName);
                     break;
                 default:
                     Console.WriteLine("Invalid choice");
                     break;
             }
 
-            Console.WriteLine($"Welcome {playerName}, the {Player.GetType().Name}");
+            Console.Clear();
+            Console.WriteLine("==================================");
+            Console.WriteLine($"Welcome {playerName}, the {Player.GetType().Name}\nPress Any key to start game");
+            Console.WriteLine("==================================");
+            Console.ReadKey();
+            Console.Clear();
 
             for (int level = 0; level <= 3; level++)
             {

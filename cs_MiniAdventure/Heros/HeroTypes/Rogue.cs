@@ -1,8 +1,8 @@
 ﻿namespace cs_MiniAdventure.Heros.HeroTypes
 {
-    public class Warrior : Hero
+    public class Rogue : Hero
     {
-        public Warrior(string name) : base("Warrior", 100, 50, 20, 0) { }
+        public Rogue(string name) : base("Rogue", 80, 25, 50, 0) { }
 
         public override void Attack(EntityProperties target)
         {
