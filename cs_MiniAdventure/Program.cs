@@ -8,23 +8,31 @@
 
             while (running)
             {
+                Console.Clear();
                 MiniHelper.MainMenu();
-                int choice = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("\nChoose an option:");
+                int choice = MiniHelper.ReadNumber();
 
                 switch (choice)
                 {
                     case 1:
                         GameHelper.StartGame();
                         break;
+
                     case 2:
-                        Console.WriteLine("Showing options...");
+                        Console.WriteLine("Options not implemented.");
+                        Console.ReadKey();
                         break;
+
                     case 3:
-                        Console.WriteLine("Exiting");
+                        Console.WriteLine("Exiting game...");
                         running = false;
                         break;
+
                     default:
-                        Console.WriteLine("Invalid choice, try again.");
+                        Console.WriteLine("Invalid choice. Press any key.");
+                        Console.ReadKey();
                         break;
                 }
             }

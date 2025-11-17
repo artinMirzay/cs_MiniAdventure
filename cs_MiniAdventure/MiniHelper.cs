@@ -8,5 +8,14 @@
             Console.WriteLine("[2] Options");
             Console.WriteLine("[3] Quit");
         }
+        public static int ReadNumber()
+        {
+            int number;
+            while (!int.TryParse(Console.ReadLine(), out number))
+            {
+                Console.WriteLine("Invalid input. Enter a number");
+            }
+            return number;
+        }
     }
 }

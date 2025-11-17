@@ -6,9 +6,12 @@ namespace cs_MiniAdventure
 {
     public static class LevelHelper
     {
+        private static Random random = new Random();
+
         public static void StartHelper(int level, Hero player)
         {
-            Console.WriteLine($"--- Level {level} ---");
+            Console.Clear();
+            Console.WriteLine($"--- Level {level} ---\n");
 
             Enemy enemy = level switch
             {
@@ -18,31 +21,47 @@ namespace cs_MiniAdventure
                 _ => new Goblin()
             };
 
-            Console.WriteLine($"A Wild {enemy.Name} appears!");
+            Console.WriteLine($"A wild {enemy.Name} appears!");
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
 
             while (player.HP > 0 && enemy.HP > 0)
             {
-                Console.WriteLine("[1] Attack");
-                Console.WriteLine("[2] Heal");
-                Console.WriteLine("[3] Run");
-                Console.Write("Choose your action: ");
+                Console.Clear();
+                Console.WriteLine($"--- Level {level} ---");
+                Console.WriteLine($"{player.Name}: {player.HP}/{player.MaxHp} HP | Mana: {player.Mana} | Potions: {player.Potions}");
+                Console.WriteLine($"{enemy.Name}: {enemy.HP} HP\n");
 
-                int choice = int.Parse(Console.ReadLine());
+                Console.WriteLine("[1] Attack");
+                Console.WriteLine("[2] Heal (Mana)");
+                Console.WriteLine("[3] Use Potion");
+                Console.WriteLine("[4] Run");
+                Console.WriteLine("\nChoose your action:");
+
+                int choice = MiniHelper.ReadNumber();
+                Console.Clear();
 
                 switch (choice)
                 {
                     case 1:
                         player.Attack(enemy);
                         break;
+
                     case 2:
                         player.Heal();
                         break;
+
                     case 3:
+                        player.UsePotion();
+                        break;
+
+                    case 4:
                         Console.WriteLine("You attempt to run...");
-                        bool escaped = TryToRun();
-                        if (escaped)
+
+                        if (TryToRun())
                         {
                             Console.WriteLine("You escaped successfully!");
+                            Console.ReadKey();
                             return;
                         }
                         else
@@ -50,31 +69,49 @@ namespace cs_MiniAdventure
                             Console.WriteLine("You failed to escape!");
                         }
                         break;
+
                     default:
-                        Console.WriteLine("Invalid input.");
+                        Console.WriteLine("Invalid action.");
                         break;
                 }
+
                 if (enemy.HP > 0)
-                {
                     enemy.Attack(player);
-                }
+
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
             }
 
             if (player.HP > 0)
             {
+                Console.Clear();
                 Console.WriteLine("You defeated the enemy!");
-                player.Gold += enemy.DropGold();
+
+                int gold = enemy.DropGold();
+                player.Gold += gold;
+
+                Console.WriteLine($"You gained {gold} gold! Total gold: {player.Gold}");
+
+                if (random.Next(0, 2) == 1)
+                {
+                    player.Potions++;
+                    Console.WriteLine("The enemy dropped a potion!");
+                }
+
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("You were defeated...");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
             }
         }
 
         public static bool TryToRun()
         {
-            Random random = new Random();
-            return random.Next(0, 2) == 1; //50%
+            return random.Next(0, 2) == 1;
         }
     }
 }

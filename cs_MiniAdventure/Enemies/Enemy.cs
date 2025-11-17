@@ -1,6 +1,6 @@
 ﻿namespace cs_MiniAdventure.Enemies
 {
-    public abstract class Enemy : EntityProperties
+    public abstract class Enemy : EntityProperties, IAttackable
     {
         //Properties
         public int GoldDrop { get; private set; }
