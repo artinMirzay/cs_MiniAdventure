@@ -8,7 +8,7 @@
             Console.WriteLine("[2] Options");
             Console.WriteLine("[3] Quit");
         }
-        public static int ReadNumber()
+        public static int ReadNumber() // Helper method to read and validate number input
         {
             int number;
             while (!int.TryParse(Console.ReadLine(), out number))
